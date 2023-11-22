@@ -78,7 +78,7 @@ class _Dashboard extends State<Dashboard>{
                 )
             ),
             centerTitle: true,
-            title: Text("DASHBOARD",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 1,color: Colors.white)),
+            title: Text("DASHBOARD",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 2,color: Colors.white)),
             elevation: 0,
             backgroundColor: ScaffoldBackColor,
             leading: IconButton(
