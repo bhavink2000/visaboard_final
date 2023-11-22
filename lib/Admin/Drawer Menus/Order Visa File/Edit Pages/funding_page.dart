@@ -1,0 +1,597 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:visaboard_final/Admin/App%20Helper/Models/Drawer%20Menus%20Model/order_visafile_edit_model.dart';
+
+import '../../../App Helper/Api Repository/api_urls.dart';
+import '../../../App Helper/Get Access Token/get_access_token.dart';
+import '../../../App Helper/Ui Helper/snackbar_msg_show.dart';
+import '../../../App Helper/Ui Helper/ui_helper.dart';
+import '../../../Authentication Pages/OnBoarding/constants/constants.dart';
+
+class FundingPage extends StatefulWidget {
+  var pagecontroller;
+  OVFEditData editDetails;
+  var user_id, user_sop_id;
+  var tabStatus, tabName;
+  FundingPage({Key? key,this.pagecontroller,required this.editDetails,this.user_id,this.user_sop_id,this.tabStatus,this.tabName}) : super(key: key);
+
+  @override
+  State<FundingPage> createState() => _FundingPageState();
+}
+
+class _FundingPageState extends State<FundingPage> {
+  String? _fsSStudies;
+  final fsName = TextEditingController();
+  String? _fsSOccupation;
+  final fsSOrganization = TextEditingController();
+  final fsSAnnualIncome = TextEditingController();
+  final fsSFundAvaiable = TextEditingController();
+
+  List<String?> fsFundsType = [];
+  List<TextEditingController> fsBankName = [TextEditingController()];
+  List<TextEditingController> fsAccountHolder = [TextEditingController()];
+  List<TextEditingController> fsAccountNo = [TextEditingController()];
+  List<TextEditingController> fsBalance = [TextEditingController()];
+  String fsSponsorship = '';
+  int numberofitems = 1;
+
+  GetAccessToken getAccessToken = GetAccessToken();
+  @override
+  void initState() {
+    super.initState();
+    getAccessToken.checkAuthentication(context, setState);
+    Future.delayed(const Duration(seconds: 1),(){
+      setState(() {
+        getRelationType(getAccessToken.access_token);
+      });
+    });
+    Future.delayed(const Duration(seconds: 2),(){
+      setState(() {
+        getOccupationType(getAccessToken.access_token);
+      });
+    });
+    Future.delayed(const Duration(seconds: 1),(){
+      setState(() {
+        getFundsType(getAccessToken.access_token);
+      });
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back)
+            ),
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text("${widget.tabName}",
+                      style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 18,letterSpacing: 1),
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text("[ 6 / 10 ]",
+                          style: TextStyle(fontFamily: Constants.OPEN_SANS,color: widget.tabStatus == 1 ? Colors.green : Colors.red,),
+                        ),
+                        SizedBox(width: 5),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: 2,
+                          color: widget.tabStatus == 1 ? Colors.green : Colors.red,
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+            )
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                color: Colors.white,
+                boxShadow: [BoxShadow(color: Colors.black45.withOpacity(0.2), spreadRadius: 1, blurRadius: 5)]
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("You have submitted request for Visa File SOP, Canada, on Date: December 7th, 2022 12:46 PM.",style: TextStyle(fontSize: 13,fontFamily: Constants.OPEN_SANS,color: Colors.green),),
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 0, 5),
+              child: Align(alignment: Alignment.topLeft,child: Text("Details of the Sponsor",style: TextStyle(fontSize: 18,fontFamily: Constants.OPEN_SANS,fontWeight: FontWeight.bold),)),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: InkWell(
+                onTap: (){
+                  fsFundsType.add(null);
+                  fsBankName.add(TextEditingController());
+                  fsAccountHolder.add(TextEditingController());
+                  fsAccountNo.add(TextEditingController());
+                  fsBalance.add(TextEditingController());
+                  numberofitems++;
+                  setState(() {});
+                },
+                child: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: PrimaryColorOne),
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  child: Text("Add More +",style: TextStyle(color: Colors.white,fontFamily: Constants.OPEN_SANS,fontSize: 13),),
+                ),
+              ),
+            )
+          ],
+        ),
+        Flexible(
+          child: ListView(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width / 7.5,
+                        child: DropdownButtonFormField(
+                          dropdownColor: Colors.white,
+                          decoration: editFormsInputDecoration('Who is going to sponsor your studies, living & accommodation? *'),
+                          value: _fsSStudies,
+                          style: TextStyle(fontSize: 18,fontFamily: Constants.OPEN_SANS,color: Colors.black),
+                          isExpanded: true,
+                          onChanged: (value) {
+                            setState(() {
+                              _fsSStudies = value as String?;
+                            });
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              _fsSStudies = value as String?;
+                            });
+                          },
+                          validator: (value) {
+                            if (value ==  null) {
+                              return "can't empty";
+                            } else {
+                              return null;
+                            }
+                          },
+                          items: relationTypes?.map((item) {
+                            return DropdownMenuItem(
+                              value: item['id'].toString(),
+                              child: Text(item['name'],style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 10)),
+                            );
+                          })?.toList() ?? [],
+                        )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.width / 7.5,
+                      child: TextField(
+                        controller: fsName,
+                        decoration: editFormsInputDecoration('Name'),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width / 7.5,
+                        child: DropdownButtonFormField(
+                          dropdownColor: Colors.white,
+                          decoration: editFormsInputDecoration('What is the occupation of your sponsor? *'),
+                          value: _fsSOccupation,
+                          style: TextStyle(fontSize: 18,fontFamily: Constants.OPEN_SANS,color: Colors.black),
+                          isExpanded: true,
+                          onChanged: (value) {
+                            setState(() {
+                              _fsSOccupation = value as String?;
+                            });
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              _fsSOccupation = value as String?;
+                            });
+                          },
+                          validator: (value) {
+                            if (value == null) {
+                              return "can't empty";
+                            } else {
+                              return null;
+                            }
+                          },
+                          items: occupationTypes?.map((item) {
+                            return DropdownMenuItem(
+                              value: item['id'].toString(),
+                              child: Text(item['name'],style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 10)),
+                            );
+                          })?.toList() ?? [],
+                        )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.width / 7.5,
+                      child: TextField(
+                        controller: fsSOrganization,
+                        decoration: editFormsInputDecoration('Name of the organization your sponsor offers duties *'),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.width / 7.5,
+                      child: TextField(
+                        controller: fsSAnnualIncome,
+                        keyboardType: TextInputType.number,
+                        decoration: editFormsInputDecoration('What is the annual income of your sponsor (from all sources)?'),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.width / 7.5,
+                      child: TextField(
+                        controller: fsSFundAvaiable,
+                        decoration: editFormsInputDecoration('How much fund is available with your sponsor to support your studies? *'),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                    child: Column(
+                      children: [
+                        Align(
+                            alignment: Alignment.topLeft,
+                            child: Text("Has your sponsor supported you with a certified Affidavit of Sponsorship?",style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 12),)
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: RadioListTile(
+                                title: Text("Yes",style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 13),),
+                                value: "Yes",
+                                groupValue: fsSponsorship,
+                                onChanged: (value){
+                                  setState(() {
+                                    fsSponsorship = value.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                            Flexible(
+                              child: RadioListTile(
+                                title: Text("No",style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 13),),
+                                value: "No",
+                                groupValue: fsSponsorship,
+                                onChanged: (value){
+                                  setState(() {
+                                    fsSponsorship = value.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                child: Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: numberofitems,
+                    itemBuilder: (context, index){
+                      return Card(
+                        elevation: 8,
+                        shadowColor: PrimaryColorOne.withOpacity(0.5),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                              child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.width / 7.5,
+                                  child: DropdownButtonFormField(
+                                    dropdownColor: Colors.white,
+                                    decoration: editFormsInputDecoration('Source of Fund *'),
+                                    value: fsFundsType.length > index ? fsFundsType[index] : null,
+                                    style: TextStyle(fontSize: 18,fontFamily: Constants.OPEN_SANS,color: Colors.black),
+                                    isExpanded: true,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        if(fsFundsType.length <= index){
+                                          fsFundsType.addAll(List.filled(index - fsFundsType.length + 1, null));
+                                        }
+                                        fsFundsType[index] = value as String?;
+                                      });
+                                    },
+                                    onSaved: (value) {
+                                      setState(() {
+                                        if(fsFundsType.length <= index){
+                                          fsFundsType.addAll(List.filled(index - fsFundsType.length + 1, null));
+                                        }
+                                        fsFundsType[index] = value as String?;
+                                      });
+                                    },
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return "can't empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    items: fundsTypes?.map((item) {
+                                      return DropdownMenuItem(
+                                        value: item['id'].toString(),
+                                        child: Text(item['name'],style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 10)),
+                                      );
+                                    })?.toList() ?? [],
+                                  )
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.width / 7.5,
+                                child: TextField(
+                                  controller: fsBankName[index],
+                                  decoration: editFormsInputDecoration('Bank Name'),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.width / 7.5,
+                                child: TextField(
+                                  controller: fsAccountHolder[index],
+                                  decoration: editFormsInputDecoration('Name of an Account Holder *'),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.width / 7.5,
+                                child: TextField(
+                                  controller: fsAccountNo[index],
+                                  decoration: editFormsInputDecoration('Account Number *'),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.width / 8,
+                                child: TextField(
+                                  controller: fsBalance[index],
+                                  keyboardType: TextInputType.number,
+                                  decoration: editFormsInputDecoration('Closing Credit Balance *'),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: (){
+                    widget.pagecontroller.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: PrimaryColorOne,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      "Back",
+                      style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: Constants.OPEN_SANS),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () async{
+                    updateFunding();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: PrimaryColorOne,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      widget.tabStatus == 1 ? "Submit" : "Next",
+                      style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: Constants.OPEN_SANS),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  List? fundsTypes;
+  Future<String?> getFundsType(var accesstoken) async {
+    print("States Calling");
+    await http.post(
+        Uri.parse(ApiConstants.getOVFEdit),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $accesstoken',
+        },
+        body: {
+          'user_id': widget.user_id,
+          'user_sop_id': widget.user_sop_id
+        }
+    ).then((response) {
+      var data = json.decode(response.body);
+      setState(() {
+        fundsTypes = data['data']['source_of_found'];
+      });
+      print("Education List -> $fundsTypes");
+    });
+  }
+  List? occupationTypes;
+  Future<String?> getOccupationType(var accesstoken) async {
+    print("States Calling");
+    await http.post(
+        Uri.parse(ApiConstants.getOVFEdit),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $accesstoken',
+        },
+        body: {
+          'user_id': widget.user_id,
+          'user_sop_id': widget.user_sop_id
+        }
+    ).then((response) {
+      var data = json.decode(response.body);
+      setState(() {
+        occupationTypes = data['data']['occupation'];
+      });
+      print("Education List -> $occupationTypes");
+    });
+  }
+  List? relationTypes;
+  Future<String?> getRelationType(var accesstoken) async {
+    print("States Calling");
+    await http.post(
+        Uri.parse(ApiConstants.getOVFEdit),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $accesstoken',
+        },
+        body: {
+          'user_id': widget.user_id,
+          'user_sop_id': widget.user_sop_id
+        }
+    ).then((response) {
+      var data = json.decode(response.body);
+      setState(() {
+        relationTypes = data['data']['family_relation'];
+      });
+      print("Education List -> $relationTypes");
+    });
+  }
+
+  Future<void> updateFunding() async {
+    try {
+      Dio dio = Dio(BaseOptions(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${getAccessToken.access_token}',
+            'Accept': 'application/json',
+          }
+      ));
+
+      FormData formData = FormData.fromMap({
+        'step': '',
+        'user_id': widget.user_id,
+        'user_sop_id': widget.user_sop_id,
+        'user[sponsor_relation]': _fsSStudies.toString(),
+        'user[sponsor_full_name]': fsName.text,
+        'user[sponsor_occupation]': _fsSOccupation.toString(),
+        'user[sponsor_organization_name]': fsSOrganization.text,
+        'user[sponsor_annual_income]': fsSAnnualIncome.text,
+        'user[sponsor_available_bal]': fsSFundAvaiable.text,
+        'user[sponsor_affidavit_status]': fsSponsorship.toString(),
+      });
+      for(int i = 0; i < fsBankName.length; i++) {
+        formData.fields.addAll([
+          MapEntry('user_sof[$i][sponsor_source_of_found]', fsFundsType[i].toString()),
+          MapEntry('user_sof[$i][bank_name]', fsBankName[i].text),
+          MapEntry('user_sof[$i][account_holder_name]', fsAccountHolder[i].text),
+          MapEntry('user_sof[$i][account_no]', fsAccountNo[i].text),
+          MapEntry('user_sof[$i][sponsor_source_of_found_amount]', fsBalance[i].text),
+        ]);
+      }
+      print("Form data->${formData.fields}");
+      final response = await dio.post(
+          ApiConstants.getOVFUpdate,
+          data: formData,
+          onSendProgress: (int sent, int total) {
+            print('$sent $total');
+          }
+      );
+      if (response.statusCode == 200) {
+        var jsonResponse = response.data;
+        print("Json -> $jsonResponse");
+        var status = jsonResponse['status'];
+        var message = jsonResponse['message'];
+
+        print("Status -> $status");
+        print("Message -> $message");
+
+        if (status == 200) {
+          SnackBarMessageShow.successsMSG('$message', context);
+          widget.pagecontroller.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+        } else {
+          SnackBarMessageShow.errorMSG('$message', context);
+          Navigator.pop(context);
+        }
+      } else {
+        SnackBarMessageShow.errorMSG('Something went wrong', context);
+        Navigator.pop(context);
+      }
+    } catch (error) {
+      SnackBarMessageShow.errorMSG('Something went wrong', context);
+      Navigator.pop(context);
+    }
+  }
+}
