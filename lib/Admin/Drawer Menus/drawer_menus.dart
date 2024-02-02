@@ -58,6 +58,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
     Entry('Credential', Icons.backup_table , <Entry>[]),
     Entry('Supplier', Icons.data_exploration , <Entry>[]),
   ];
+
+
   final List<Entry> Amenus = <Entry>[
     Entry('Dashboard', Icons.dashboard , <Entry>[]),
     Entry('Client', Icons.person , <Entry>[]),
@@ -94,9 +96,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
     ),*/
     Entry('Marketing', Icons.markunread_mailbox_outlined , <Entry>[]),
     //Entry('Spinner', Icons.password_rounded , <Entry>[]),
-    Entry('Internal Chat', Icons.chat , <Entry>[]),
+    //Entry('Internal Chat', Icons.chat , <Entry>[]),
     Entry('Agent QR Code', Icons.qr_code , <Entry>[]),
-    Entry('Credential', Icons.backup_table , <Entry>[]),
+    //Entry('Credential', Icons.backup_table , <Entry>[]),
     Entry('Supplier', Icons.data_exploration , <Entry>[]),
   ];
 

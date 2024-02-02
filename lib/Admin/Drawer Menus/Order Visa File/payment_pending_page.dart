@@ -338,119 +338,122 @@ class _PaymentPendingPage extends State<PaymentPendingPage>{
   }
   buildCollapsed3(var letter, var company,var edit, var msg, var upload, var chat, var subdomain ,var invoice,var user_id, var user_sop_id,
       var invoiceNm, var id,var c_id, var c_fnm, var c_lnm,var s_nm, var l_nm, var country_nm,var o_price) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.3,
-                child: Text("Letter",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$letter" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.3,
+                  child: Text("Letter",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.3,
-                child: Text("Company",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$letter" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(company == null ? "" : "$company",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.3,
+                  child: Text("Company",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.3,
-                child: Text("Action",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.black,fontSize: 11))
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              children: [
-                edit == 0 ? Container() :InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>EditOrderVisaFile(user_id: user_id,user_sop_id: user_sop_id)));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 15,),
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(company == null ? "" : "$company",style: FottorR)
                 ),
-                msg == 0 ? Container() : InkWell(
-                  onTap: (){
-                    openSendNewMessage(user_sop_id);
-                  },
-                  child:  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.mail,color: PrimaryColorOne,size: 15,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.3,
+                  child: Text("Action",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.black,fontSize: 11))
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                children: [
+                  edit == 0 ? Container() :InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>EditOrderVisaFile(user_id: user_id,user_sop_id: user_sop_id)));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 15,),
+                    ),
                   ),
-                ),
-                upload == 0 ? Container() : InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UploadDocs(user_sop_id: user_sop_id,user_id: user_id,)));
-                  },
-                  child:  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.upload,color: PrimaryColorOne,size: 15,),
+                  msg == 0 ? Container() : InkWell(
+                    onTap: (){
+                      openSendNewMessage(user_sop_id);
+                    },
+                    child:  Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.mail,color: PrimaryColorOne,size: 15,),
+                    ),
                   ),
-                ),
-                chat == 0 ? Container() : InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreenOrderVisaFile(
-                      client_id: c_id,
-                      c_id: id,
-                      client_fnm: c_fnm,
-                      client_lnm: c_lnm,
-                      service_nm: s_nm,
-                      letter_nm: l_nm,
-                      country_nm: country_nm,
-                      order_p: o_price,
-                      u_sop_id: user_sop_id,
-                    )));
-                  },
-                  child:  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.chat,color: PrimaryColorOne,size: 15,),
+                  upload == 0 ? Container() : InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>UploadDocs(user_sop_id: user_sop_id,user_id: user_id,)));
+                    },
+                    child:  Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.upload,color: PrimaryColorOne,size: 15,),
+                    ),
                   ),
-                ),
-                subdomain == 0 ? Container() : InkWell(
-                  onTap: (){
-                    addSubdomain(user_id, user_sop_id);
-                  },
-                  child:  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.cloud_done_outlined,color: PrimaryColorOne,size: 15,),
+                  chat == 0 ? Container() : InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreenOrderVisaFile(
+                        client_id: c_id,
+                        c_id: id,
+                        client_fnm: c_fnm,
+                        client_lnm: c_lnm,
+                        service_nm: s_nm,
+                        letter_nm: l_nm,
+                        country_nm: country_nm,
+                        order_p: o_price,
+                        u_sop_id: user_sop_id,
+                      )));
+                    },
+                    child:  Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.chat,color: PrimaryColorOne,size: 15,),
+                    ),
                   ),
-                ),
-                invoice == 0 ? Container() : InkWell(
-                  onTap: (){
-                    launch("$invoiceNm");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: Icon(Icons.picture_as_pdf_rounded,color: PrimaryColorOne,size: 15,),
+                  subdomain == 0 ? Container() : InkWell(
+                    onTap: (){
+                      addSubdomain(user_id, user_sop_id);
+                    },
+                    child:  Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.cloud_done_outlined,color: PrimaryColorOne,size: 15,),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ],
+                  invoice == 0 ? Container() : InkWell(
+                    onTap: (){
+                      launch("$invoiceNm");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Icon(Icons.picture_as_pdf_rounded,color: PrimaryColorOne,size: 15,),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -546,16 +549,19 @@ class _PaymentPendingPage extends State<PaymentPendingPage>{
     );
   }
   buildExpanded3(var service, var agentFnm,var agentLnm, var adminFnm, var adminLnm,var country,var orderPrice, var updateOn) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        showFormDataE3('Service', '$service'),
-        showFormDataE3('Agent Name', '$agentFnm $agentLnm'),
-        showFormDataE3('Admin Name', '$adminFnm $adminLnm'),
-        showFormDataE3('Country', '$country'),
-        showFormDataE3('Order Price', '$orderPrice'),
-        showFormDataE3('Update On', '$updateOn'),
-      ],
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          showFormDataE3('Service', '$service'),
+          showFormDataE3('Agent Name', '$agentFnm $agentLnm'),
+          showFormDataE3('Admin Name', '$adminFnm $adminLnm'),
+          showFormDataE3('Country', '$country'),
+          showFormDataE3('Order Price', '$orderPrice'),
+          showFormDataE3('Update On', '$updateOn'),
+        ],
+      ),
     );
   }
 
@@ -593,6 +599,7 @@ class _PaymentPendingPage extends State<PaymentPendingPage>{
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
+            backgroundColor: Colors.white,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState){
                 return Column(

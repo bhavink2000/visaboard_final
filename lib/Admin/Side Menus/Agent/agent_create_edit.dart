@@ -71,16 +71,16 @@ class _AgentCreateEditState extends State<AgentCreateEdit> {
   @override
   void initState() {
     _getCountryList(widget.access_token);
-    firstnm.text = widget.fNM;
-    middlenm.text = widget.mNM;
-    lastnm.text = widget.lNM;
-    companyname.text = widget.companyNM;
-    email.text = widget.email;
-    mobile.text = widget.mobileNo;
+    firstnm.text = widget.fNM ?? '';
+    middlenm.text = widget.mNM ?? '';
+    lastnm.text = widget.lNM ?? '';
+    companyname.text = widget.companyNM ?? '';
+    email.text = widget.email ?? '';
+    mobile.text = widget.mobileNo ?? '';
     //activeinactive = widget.status;
-    selectCountry = widget.country;
-    selectState = widget.state;
-    selectCity = widget.city;
+    selectCountry = widget.country ?? '';
+    selectState = widget.state ?? '';
+    selectCity = widget.city ?? '';
     super.initState();
   }
 

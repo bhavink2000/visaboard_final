@@ -319,46 +319,49 @@ class _ClientPage extends State<ClientPage> {
     );
   }
   buildCollapsed3(var afNm, var alNm, var cNo) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Agent Name",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$afNm $alNm" ?? "",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Agent Name",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Contact Number",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: InkWell(
-                onTap: (){
-                  launch("tel://$cNo");
-                },
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
                 child: Container(
                     padding: PaddingField,
-                    child: Text("$cNo",style: FrontFottorR)
+                    child: Text("$afNm $alNm" ?? "",style: FrontFottorR)
                 ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Contact Number",style: FrontFottorL)
               ),
-            )
-          ],
-        )
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: InkWell(
+                  onTap: (){
+                    launch("tel://$cNo");
+                  },
+                  child: Container(
+                      padding: PaddingField,
+                      child: Text("$cNo",style: FrontFottorR)
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -404,80 +407,83 @@ class _ClientPage extends State<ClientPage> {
     );
   }
   buildExpanded3(var country,var companyNm,var createOn,var user_sop_id) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Foreign Country",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(country == null ? "" : "$country",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Foreign Country",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Company Name",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text(companyNm == null ? "" : "$companyNm",style: FrontFottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Create On",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$createOn",style: FrontFottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Action",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            InkWell(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderVisaFile(id: user_sop_id,)));
-              },
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
                 child: Container(
                     padding: PaddingField,
-                    child: Icon(Icons.menu_open_sharp,color: PrimaryColorOne,size: 15,)
+                    child: Text(country == null ? "" : "$country",style: FrontFottorR)
                 ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Company Name",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(companyNm == null ? "" : "$companyNm",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Create On",style: FrontFottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$createOn",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Action",style: FrontFottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderVisaFile(id: user_sop_id,)));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  child: Container(
+                      padding: PaddingField,
+                      child: Icon(Icons.menu_open_sharp,color: PrimaryColorOne,size: 15,)
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 

@@ -44,11 +44,11 @@ class _AdminCreateEditState extends State<AdminCreateEdit> {
   void initState() {
     super.initState();
     getAccessToken.checkAuthentication(context, setState);
-    adminfirstNM.text = widget.afnm;
-    adminmiddleNM.text = widget.amnm;
-    adminlastNM.text = widget.alnm;
-    adminemail.text = widget.aemail;
-    adminmobile.text = widget.amobile;
+    adminfirstNM.text = widget.afnm ?? '';
+    adminmiddleNM.text = widget.amnm ?? '';
+    adminlastNM.text = widget.alnm  ?? '';
+    adminemail.text = widget.aemail ?? '';
+    adminmobile.text = widget.amobile ?? '';
     Future.delayed(const Duration(seconds: 1),(){
       setState(() {
         _getserviceList(getAccessToken.access_token);

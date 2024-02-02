@@ -73,6 +73,7 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Row(
@@ -317,6 +318,7 @@ class _NotificationPageState extends State<NotificationPage> {
       var id,var c_id, var c_fnm, var c_lnm,var s_nm, var l_nm, var country_nm,var o_price, var showDropdown,var statusD
       ) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -631,106 +633,109 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
   buildExpanded3(var sType, var lType, var country, var oPrice, var cNm, var updateOn) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Service",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$sType",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Service",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Letter Type",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$sType",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$lType",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Letter Type",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Country",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$lType",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$country",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Country",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Order Price	",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$country",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("₹$oPrice",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Order Price	",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Company Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("₹$oPrice",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$cNm",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Company Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Updated On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$cNm",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$updateOn",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Updated On",style: FottorL)
               ),
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$updateOn",style: FottorR)
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -746,7 +751,7 @@ class _NotificationPageState extends State<NotificationPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
-            contentPadding: const EdgeInsets.only(top: 10.0),
+            contentPadding: const EdgeInsets.only(top: 10.0),backgroundColor: Colors.white,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState){
                 return Column(

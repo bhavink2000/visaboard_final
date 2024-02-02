@@ -4,13 +4,16 @@ class UserLogin {
   String? tokenType;
   Data? data;
   int? expiresIn;
+  var roleId;
 
   UserLogin(
       {this.status,
         this.accessToken,
         this.tokenType,
         this.data,
-        this.expiresIn});
+        this.expiresIn,
+        this.roleId
+      });
 
   UserLogin.fromJson(Map<String, dynamic> json) {
     status = json['status'];

@@ -318,85 +318,88 @@ class _MarketingPage extends State<MarketingPage>{
     );
   }
   buildCollapsed3(var mobile,var id,var nm, var cNo, var mail, var cNM, var companyAdd,var photo,var comment,var registered,var createdOn) {
-    return Column(
-      children: [
-        showDataFront('Email', '$mail'),
-        showDataFront('Company Name', '$cNM'),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Contact Number	",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: InkWell(
-                onTap: ()=>launch("tel://$mobile"),
-                child: Container(
-                    padding: PaddingField,
-                    child: Text("$mobile" ?? "",style: FottorR)
-                ),
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          showDataFront('Email', '$mail'),
+          showDataFront('Company Name', '$cNM'),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Contact Number	",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      openAddNew('Edit', nm, cNo, mail, cNM, companyAdd, comment, registered,id);
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: InkWell(
+                  onTap: ()=>launch("tel://$mobile"),
+                  child: Container(
+                      padding: PaddingField,
+                      child: Text("$mobile" ?? "",style: FottorR)
                   ),
                 ),
-                SizedBox(width: 5),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('VisaBoard Alert Dialog'),
-                              content: const Text('Do you really want to delete?'),
-                              actions: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      deleteMarketing(id);
-                                    },
-                                    child: const Text('Yes')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); //close Dialog
-                                  },
-                                  child: const Text('Close'),
-                                )
-                              ],
-                            );
-                          }
-                      );
-                    },
-                    child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        openAddNew('Edit', nm, cNo, mail, cNM, companyAdd, comment, registered,id);
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
-        ),
-      ],
+                  SizedBox(width: 5),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('VisaBoard Alert Dialog'),
+                                content: const Text('Do you really want to delete?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        deleteMarketing(id);
+                                      },
+                                      child: const Text('Yes')),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context); //close Dialog
+                                    },
+                                    child: const Text('Close'),
+                                  )
+                                ],
+                              );
+                            }
+                        );
+                      },
+                      child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
   Widget showDataFront(var label, var data){
@@ -456,70 +459,73 @@ class _MarketingPage extends State<MarketingPage>{
   }
 
   buildExpanded3(var id,var nm, var cNo, var mail, var cNM, var companyAdd,var photo,var comment,var registered,var createdOn) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        showDataBackSub('Company Address', '$companyAdd'),
-        showDataBackSub('Photo', '$photo'),
-        showDataBackSub('Comment', '$comment'),
-        showDataBackSub('Registered', '$registered'),
-        showDataBackSub('Created on', '$createdOn'),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      openAddNew('Edit', nm, cNo, mail, cNM, companyAdd, comment, registered,id);
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          showDataBackSub('Company Address', '$companyAdd'),
+          showDataBackSub('Photo', '$photo'),
+          showDataBackSub('Comment', '$comment'),
+          showDataBackSub('Registered', '$registered'),
+          showDataBackSub('Created on', '$createdOn'),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        openAddNew('Edit', nm, cNo, mail, cNM, companyAdd, comment, registered,id);
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                ),
-                SizedBox(width: 5),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('VisaBoard Alert Dialog'),
-                              content: const Text('Do you really want to delete?'),
-                              actions: <Widget>[
-                                TextButton(
+                  SizedBox(width: 5),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('VisaBoard Alert Dialog'),
+                                content: const Text('Do you really want to delete?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        deleteMarketing(id);
+                                      },
+                                      child: const Text('Yes')),
+                                  TextButton(
                                     onPressed: () {
-                                      deleteMarketing(id);
+                                      Navigator.pop(context); //close Dialog
                                     },
-                                    child: const Text('Yes')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); //close Dialog
-                                  },
-                                  child: const Text('Close'),
-                                )
-                              ],
-                            );
-                          }
-                      );
-                    },
-                    child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
-                  ),
-                )
-              ],
-            )
-          ],
-        ),
-      ],
+                                    child: const Text('Close'),
+                                  )
+                                ],
+                              );
+                            }
+                        );
+                      },
+                      child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
   Widget showDataBackSub(var label, var data){
@@ -556,6 +562,7 @@ class _MarketingPage extends State<MarketingPage>{
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
+            backgroundColor: Colors.white,
             content: SingleChildScrollView(
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState){

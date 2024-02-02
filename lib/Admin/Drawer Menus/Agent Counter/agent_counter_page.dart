@@ -306,46 +306,49 @@ class _AgentCounterPage extends State<AgentCounterPage>{
     );
   }
   buildCollapsed3(var name, var mobile) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(name == null ? "" : "$name",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Mobie",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: InkWell(
-                onTap: (){
-                  launch("tel://$mobile");
-                },
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
                 child: Container(
                     padding: PaddingField,
-                    child: Text(mobile == null ? "" : "$mobile",style: FottorR)
+                    child: Text(name == null ? "" : "$name",style: FottorR)
                 ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Mobie",style: FottorL)
               ),
-            )
-          ],
-        )
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: InkWell(
+                  onTap: (){
+                    launch("tel://$mobile");
+                  },
+                  child: Container(
+                      padding: PaddingField,
+                      child: Text(mobile == null ? "" : "$mobile",style: FottorR)
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -397,90 +400,93 @@ class _AgentCounterPage extends State<AgentCounterPage>{
     );
   }
   buildExpanded3(var email, var country, var state, var city, var companyNM) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Email",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(email == null ? "" : "$email",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Email",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Country",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(email == null ? "" : "$email",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(country == null ? "" : "$country",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Country",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("state",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(country == null ? "" : "$country",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(state == null ? "" : "$state",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("state",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("City",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(state == null ? "" : "$state",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(city == null ? "" : "$city",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("City",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Company Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(city == null ? "" : "$city",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(companyNM == null ? "" : "$companyNM",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Company Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(companyNM == null ? "" : "$companyNM",style: FottorR)
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -500,6 +506,7 @@ class _AgentCounterPage extends State<AgentCounterPage>{
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
+            backgroundColor: Colors.white,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState){
                 return SingleChildScrollView(

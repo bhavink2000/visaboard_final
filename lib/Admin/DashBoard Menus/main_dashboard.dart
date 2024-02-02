@@ -117,6 +117,7 @@ class _Dashboard extends State<Dashboard>{
               selectedIndex: currentIndex,
               showElevation: true, // use this to remove appBar's elevation
               onItemSelected: (index) => onTapScreen(index),
+              backgroundColor: Colors.white,
               items: [
                 BottomNavyBarItem(
                   icon: const Icon(Icons.home),

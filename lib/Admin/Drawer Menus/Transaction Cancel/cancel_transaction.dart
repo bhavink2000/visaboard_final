@@ -263,55 +263,58 @@ class _CancelTransactionPage extends State<CancelTransactionPage>{
     );
   }
   buildCollapsed3(var s_nm, var l_nm) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Service Type",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$s_nm" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Service Type",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Letter Type",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$s_nm" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$l_nm" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Letter Type",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Container(
-                padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-                child: Text("Cancel",style: TextStyle(color: Colors.red,fontFamily: Constants.OPEN_SANS,letterSpacing: 0.5,fontWeight: FontWeight.bold))
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$l_nm" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Container(
+                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                  child: Text("Cancel",style: TextStyle(color: Colors.red,fontFamily: Constants.OPEN_SANS,letterSpacing: 0.5,fontWeight: FontWeight.bold))
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -343,58 +346,61 @@ class _CancelTransactionPage extends State<CancelTransactionPage>{
     );
   }
   buildExpanded3(var a_fnm, var a_lnm, var payment_on, var cancel_on, var cancel_status) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Agent Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$a_fnm $a_lnm",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Agent Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Payment On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$a_fnm $a_lnm",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$payment_on" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Payment On",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Cancel On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$payment_on" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$cancel_on" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Cancel On",style: FottorL)
               ),
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$cancel_on" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

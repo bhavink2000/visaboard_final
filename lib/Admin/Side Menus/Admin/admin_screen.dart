@@ -268,6 +268,7 @@ class _AdminScreenState extends State<AdminScreen> {
   }
   buildCollapsed3(email, mobile,id, fnm, mnm, lnm, mail) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -355,81 +356,84 @@ class _AdminScreenState extends State<AdminScreen> {
     return Container();
   }
   buildExpanded3(id, fnm, mnm, lnm, mail, mobile, status, createat) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Status",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(status ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Status",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Created On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(status ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(createat ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Created On",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminCreateEdit(
-                        type: 'Edit',
-                        id: id ?? "",
-                        afnm: fnm ?? "",
-                        amnm: mnm ?? "",
-                        alnm: lnm ?? "",
-                        aemail: mail ?? "",
-                        amobile: mobile ?? "",
-                      )));
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(createat ?? "",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                    },
-                    child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminCreateEdit(
+                          type: 'Edit',
+                          id: id ?? "",
+                          afnm: fnm ?? "",
+                          amnm: mnm ?? "",
+                          alnm: lnm ?? "",
+                          aemail: mail ?? "",
+                          amobile: mobile ?? "",
+                        )));
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                      },
+                      child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

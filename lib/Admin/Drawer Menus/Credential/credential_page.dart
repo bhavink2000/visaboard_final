@@ -280,130 +280,133 @@ class _CredentialPage extends State<CredentialPage>{
     );
   }
   buildCollapsed3(var adminFnm, var adminLnm, var appNm, var link,var userNm, userId, var password, var createOn, var id) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3,
-                child: Text("Sub Admin Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$adminFnm $adminLnm" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Text("Sub Admin Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3,
-                child: Text("App Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$appNm" ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3,
-                child: Text("Link",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: InkWell(
-                      onTap: (){
-                        link == null
-                          ? Fluttertoast.showToast(msg: "No Url")
-                          : launch("$link").then((value){
-                            print("Launched URL");
-                        }).onError((error, stackTrace){
-                          print("error->$error");
-                          Fluttertoast.showToast(msg: "Please Check URL is Valid?");
-                        });
-                      },
-                      child: Text(link == null ? "" : "$link",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.blueAccent,fontSize: 12,decoration: TextDecoration.underline)))
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CredentialCreateEdit(
-                          type: 'Edit',
-                          aNM: appNm == null ? '' : '$appNm',
-                          uNM: userNm == null ? '' : '$userNm',
-                          uId: userId == null ? '' : '$userId',
-                          password: password == null ? '' : '$password',
-                          link: link == null ? '' : '$link',
-                          id: id == null ? '' : '$id',
-                        )));
-                      },
-                      child: Icon(Icons.edit,color: PrimaryColorTwo,size: 20,)
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$adminFnm $adminLnm" ?? "",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('VisaBoard Alert Dialog'),
-                              content: const Text('Do you really want to delete?'),
-                              actions: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      deleteCredential(id);
-                                    },
-                                    child: const Text('Yes')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); //close Dialog
-                                  },
-                                  child: const Text('Close'),
-                                )
-                              ],
-                            );
-                          }
-                      );
-                    },
-                    child: Icon(Icons.delete,color: PrimaryColorTwo,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Text("App Name",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$appNm" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Text("Link",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: InkWell(
+                        onTap: (){
+                          link == null
+                            ? Fluttertoast.showToast(msg: "No Url")
+                            : launch("$link").then((value){
+                              print("Launched URL");
+                          }).onError((error, stackTrace){
+                            print("error->$error");
+                            Fluttertoast.showToast(msg: "Please Check URL is Valid?");
+                          });
+                        },
+                        child: Text(link == null ? "" : "$link",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.blueAccent,fontSize: 12,decoration: TextDecoration.underline)))
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CredentialCreateEdit(
+                            type: 'Edit',
+                            aNM: appNm == null ? '' : '$appNm',
+                            uNM: userNm == null ? '' : '$userNm',
+                            uId: userId == null ? '' : '$userId',
+                            password: password == null ? '' : '$password',
+                            link: link == null ? '' : '$link',
+                            id: id == null ? '' : '$id',
+                          )));
+                        },
+                        child: Icon(Icons.edit,color: PrimaryColorTwo,size: 20,)
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
-        ),
-      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('VisaBoard Alert Dialog'),
+                                content: const Text('Do you really want to delete?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        deleteCredential(id);
+                                      },
+                                      child: const Text('Yes')),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context); //close Dialog
+                                    },
+                                    child: const Text('Close'),
+                                  )
+                                ],
+                              );
+                            }
+                        );
+                      },
+                      child: Icon(Icons.delete,color: PrimaryColorTwo,size: 20,),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -411,136 +414,139 @@ class _CredentialPage extends State<CredentialPage>{
     return Container();
   }
   buildExpanded3(var userNm, userId, var password, var createOn, var id, var appNm,var link) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Username",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(userNm == null ? '' : "$userNm",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Username",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("User ID",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$userId" ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Password",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$password",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Created On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$createOn",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CredentialCreateEdit(
-                          type: 'Edit',
-                          aNM: appNm == null ? '' : '$appNm',
-                          uNM: userNm == null ? '' : '$userNm',
-                          uId: userId == null ? '' : '$userId',
-                          password: password == null ? '' : '$password',
-                          link: link == null ? '' : '$link',
-                          id: id == null ? '' : '$id',
-                        )));
-                      },
-                      child: Icon(Icons.edit,color: PrimaryColorTwo,size: 20,)
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(userNm == null ? '' : "$userNm",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('VisaBoard Alert Dialog'),
-                              content: const Text('Do you really want to delete?'),
-                              actions: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      deleteCredential(id);
-                                    },
-                                    child: const Text('Yes')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); //close Dialog
-                                  },
-                                  child: const Text('Close'),
-                                )
-                              ],
-                            );
-                          }
-                      );
-                    },
-                    child: Icon(Icons.delete,color: PrimaryColorTwo,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("User ID",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$userId" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Password",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$password",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Created On",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$createOn",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CredentialCreateEdit(
+                            type: 'Edit',
+                            aNM: appNm == null ? '' : '$appNm',
+                            uNM: userNm == null ? '' : '$userNm',
+                            uId: userId == null ? '' : '$userId',
+                            password: password == null ? '' : '$password',
+                            link: link == null ? '' : '$link',
+                            id: id == null ? '' : '$id',
+                          )));
+                        },
+                        child: Icon(Icons.edit,color: PrimaryColorTwo,size: 20,)
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
-        ),
-      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('VisaBoard Alert Dialog'),
+                                content: const Text('Do you really want to delete?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        deleteCredential(id);
+                                      },
+                                      child: const Text('Yes')),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context); //close Dialog
+                                    },
+                                    child: const Text('Close'),
+                                  )
+                                ],
+                              );
+                            }
+                        );
+                      },
+                      child: Icon(Icons.delete,color: PrimaryColorTwo,size: 20,),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 

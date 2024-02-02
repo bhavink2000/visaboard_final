@@ -262,6 +262,7 @@ class _AgentLogHistoryState extends State<AgentLogHistory> {
   }
   buildCollapsed3(mail, mobile, link, content, date) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(

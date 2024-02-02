@@ -290,105 +290,108 @@ class _AgentScreenState extends State<AgentScreen> {
     );
   }
   buildCollapsed3(id, fnm, mnm, lnm, cnm, mail, mobile, status, country, state, city, date) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Email",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(mail ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Email",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Mobile",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: InkWell(
-                onTap: (){
-                  launch("tel://$mobile");
-                },
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
                 child: Container(
                     padding: PaddingField,
-                    child: Text(mobile ?? "",style: FottorR)
+                    child: Text(mail ?? "",style: FottorR)
                 ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Mobile",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentWalletScreen(
-                        id: id ?? "",
-                      )));
-                    },
-                    child: Icon(Icons.wallet,color: PrimaryColorOne,size: 20,),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: InkWell(
+                  onTap: (){
+                    launch("tel://$mobile");
+                  },
+                  child: Container(
+                      padding: PaddingField,
+                      child: Text(mobile ?? "",style: FottorR)
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentLogHistory(
-                        id: id ?? "",
-                      )));
-                    },
-                    child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentWalletScreen(
+                          id: id ?? "",
+                        )));
+                      },
+                      child: Icon(Icons.wallet,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentCreateEdit(
-                        type: 'Edit',
-                        access_token: getAccessToken.access_token,
-                        id: id,
-                        fNM: fnm,
-                        mNM: mnm,
-                        lNM: lnm,
-                        companyNM: cnm,
-                        email: mail,
-                        mobileNo: mobile,
-                        country: country,
-                        state: state,
-                        city: city,
-                        status: status,
-                      )));
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentLogHistory(
+                          id: id ?? "",
+                        )));
+                      },
+                      child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentCreateEdit(
+                          type: 'Edit',
+                          access_token: getAccessToken.access_token,
+                          id: id,
+                          fNM: fnm,
+                          mNM: mnm,
+                          lNM: lnm,
+                          companyNM: cnm,
+                          email: mail,
+                          mobileNo: mobile,
+                          country: country,
+                          state: state,
+                          city: city,
+                          status: status,
+                        )));
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -436,133 +439,136 @@ class _AgentScreenState extends State<AgentScreen> {
     );
   }
   buildExpanded3(id, fnm, mnm, lnm, cnm, mail, mobile, status, country, state, city, date) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Country",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text(country ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Country",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("State",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text(state ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("City",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text(city ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Created On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text(date ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 4.5,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentWalletScreen(
-                        id: id ?? "",
-                      )));
-                    },
-                    child: Icon(Icons.wallet,color: PrimaryColorOne,size: 20,),
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(country ?? "",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentLogHistory(
-                        id: id ?? "",
-                      )));
-                    },
-                    child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
-                  ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("State",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(state ?? "",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentCreateEdit(
-                        type: 'Edit',
-                        access_token: getAccessToken.access_token,
-                        id: id,
-                        fNM: fnm,
-                        mNM: mnm,
-                        lNM: lnm,
-                        companyNM: cnm,
-                        email: mail,
-                        mobileNo: mobile,
-                        country: country,
-                        state: state,
-                        city: city,
-                        status: status,
-                      )));
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
-                  ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("City",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(city ?? "",style: FottorR)
                 ),
-              ],
-            )
-          ],
-        ),
-      ],
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Created On",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(date ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 4.5,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentWalletScreen(
+                          id: id ?? "",
+                        )));
+                      },
+                      child: Icon(Icons.wallet,color: PrimaryColorOne,size: 20,),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentLogHistory(
+                          id: id ?? "",
+                        )));
+                      },
+                      child: Icon(Icons.history,color: PrimaryColorOne,size: 20,),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentCreateEdit(
+                          type: 'Edit',
+                          access_token: getAccessToken.access_token,
+                          id: id,
+                          fNM: fnm,
+                          mNM: mnm,
+                          lNM: lnm,
+                          companyNM: cnm,
+                          email: mail,
+                          mobileNo: mobile,
+                          country: country,
+                          state: state,
+                          city: city,
+                          status: status,
+                        )));
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

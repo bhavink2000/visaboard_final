@@ -280,6 +280,7 @@ class _AgentCounterActionState extends State<AgentCounterAction> {
   }
   buildCollapsed3(var fnm, var mnm, var lnm, var afnm, var alnm) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -363,74 +364,77 @@ class _AgentCounterActionState extends State<AgentCounterAction> {
     );
   }
   buildExpanded3(var country, var sType, var lType, var updateOn) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Country",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$country",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Country",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Service Type",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$country",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$sType",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Service Type",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Letter Type",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$sType",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$lType",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Letter Type",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.3,
-                child: Text("Updated On",style: FrontFottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$lType",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$updateOn",style: FrontFottorR)
+                  width: MediaQuery.of(context).size.width / 3.3,
+                  child: Text("Updated On",style: FrontFottorL)
               ),
-            )
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$updateOn",style: FrontFottorR)
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

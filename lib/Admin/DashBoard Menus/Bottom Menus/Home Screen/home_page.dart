@@ -42,28 +42,31 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(25, 15, 0, 0),
-                child: AnimationLimiter(
-                  child: AnimationConfiguration.staggeredList(
-                    position: 3,
-                    duration: const Duration(milliseconds: 1000),
-                    child: SlideAnimation(
-                      horizontalOffset: 50.0,
-                      child: FadeInAnimation(
-                        child: Text(
-                          "Hi, \nSuper Admin",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: Constants.OPEN_SANS,
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 15, 0, 0),
+                  child: AnimationLimiter(
+                    child: AnimationConfiguration.staggeredList(
+                      position: 3,
+                      duration: const Duration(milliseconds: 1000),
+                      child: SlideAnimation(
+                        horizontalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: Text(
+                            "Hi, \nSuper Admin",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: Constants.OPEN_SANS,
 
+                            ),
                           ),
                         ),
                       ),
@@ -71,123 +74,123 @@ class _HomePage extends State<HomePage> {
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-        Expanded(
-          child: Container(
-            width: MediaQuery.of(context).size.width,//color: Colors.yellow,
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-            child: ChangeNotifierProvider<DashboardDataProvider>(
-              create: (BuildContext context)=>dashboardDataProvider,
-              child: Consumer<DashboardDataProvider>(
-                builder: (context, value, __){
-                  switch(value.dashBoardCounterData.status!){
-                    case Status.loading:
-                      return CenterLoading();
-                    case Status.error:
-                      return const ErrorHelper();
-                    case Status.completed:
-                      return AnimationLimiter(
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 6,
-                              mainAxisSpacing: 6,
-                              childAspectRatio: 2.3/2
-                          ),
-                          itemCount: value.dashBoardCounterData.data!.data!.length,
-                          itemBuilder: (context, index) {
-                            var dashBoardCounter = value.dashBoardCounterData.data!.data;
-                            return AnimationConfiguration.staggeredList(
-                              position: index,
-                              duration: const Duration(milliseconds: 800),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: SlideAnimation(
-                                  verticalOffset: 50.0,
-                                  child: FadeInAnimation(
-                                    child: Card(
-                                      color: const Color(0xff0a6fb8),
-                                      elevation: 8,
-                                      shadowColor: PrimaryColorOne.withOpacity(0.2),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8),
-                                            child: Text(
-                                              '${dashBoardCounter![index].serviceName}',
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: Constants.OPEN_SANS,
-                                                  letterSpacing: 1),
+            ],
+          ),
+          Expanded(
+            child: Container(
+              width: MediaQuery.of(context).size.width,//color: Colors.yellow,
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+              child: ChangeNotifierProvider<DashboardDataProvider>(
+                create: (BuildContext context)=>dashboardDataProvider,
+                child: Consumer<DashboardDataProvider>(
+                  builder: (context, value, __){
+                    switch(value.dashBoardCounterData.status!){
+                      case Status.loading:
+                        return CenterLoading();
+                      case Status.error:
+                        return const ErrorHelper();
+                      case Status.completed:
+                        return AnimationLimiter(
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 6,
+                                mainAxisSpacing: 6,
+                                childAspectRatio: 2.3/2
+                            ),
+                            itemCount: value.dashBoardCounterData.data!.data!.length,
+                            itemBuilder: (context, index) {
+                              var dashBoardCounter = value.dashBoardCounterData.data!.data;
+                              return AnimationConfiguration.staggeredList(
+                                position: index,
+                                duration: const Duration(milliseconds: 800),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: SlideAnimation(
+                                    verticalOffset: 50.0,
+                                    child: FadeInAnimation(
+                                      child: Card(
+                                        color: const Color(0xff0a6fb8),
+                                        elevation: 8,
+                                        shadowColor: PrimaryColorOne.withOpacity(0.2),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Text(
+                                                '${dashBoardCounter![index].serviceName}',
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: Constants.OPEN_SANS,
+                                                    letterSpacing: 1),
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            padding: ContinerPaddingInside,
-                                            width: MediaQuery.of(context).size.width,
-                                            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5)),
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.fromLTRB(8, 5, 8, 0),
-                                                  child: Align(
-                                                      alignment: Alignment.topLeft,
-                                                      child: Text(
-                                                        "Active  : ${dashBoardCounter[index].activeServiceCount}",
-                                                        style: TextStyle(
-                                                            fontSize: 15,
-                                                            fontFamily: Constants.OPEN_SANS
-                                                        ),
-                                                      )
+                                            const Spacer(),
+                                            Container(
+                                              padding: ContinerPaddingInside,
+                                              width: MediaQuery.of(context).size.width,
+                                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5)),
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.fromLTRB(8, 5, 8, 0),
+                                                    child: Align(
+                                                        alignment: Alignment.topLeft,
+                                                        child: Text(
+                                                          "Active  : ${dashBoardCounter[index].activeServiceCount}",
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              fontFamily: Constants.OPEN_SANS
+                                                          ),
+                                                        )
+                                                    ),
                                                   ),
-                                                ),
-                                                const Padding(
-                                                  padding: EdgeInsets.all(2),
-                                                  child: Divider(
-                                                    color: Color(0xff0a6fb8),
-                                                    thickness: 1.5,
+                                                  const Padding(
+                                                    padding: EdgeInsets.all(2),
+                                                    child: Divider(
+                                                      color: Color(0xff0a6fb8),
+                                                      thickness: 1.5,
+                                                    ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                                  child: Align(
-                                                      alignment: Alignment.topLeft,
-                                                      child: Text(
-                                                        "Total : ${dashBoardCounter[index].serviceCount}",
-                                                        style: TextStyle(
-                                                            fontFamily: Constants.OPEN_SANS,
-                                                            fontSize: 15),
-                                                      )
+                                                  Padding(
+                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                                    child: Align(
+                                                        alignment: Alignment.topLeft,
+                                                        child: Text(
+                                                          "Total : ${dashBoardCounter[index].serviceCount}",
+                                                          style: TextStyle(
+                                                              fontFamily: Constants.OPEN_SANS,
+                                                              fontSize: 15),
+                                                        )
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                  }
-                },
+                              );
+                            },
+                          ),
+                        );
+                    }
+                  },
+                ),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

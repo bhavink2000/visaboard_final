@@ -496,41 +496,44 @@ class _TransactionPage extends State<TransactionPage>{
     );
   }
   buildCollapsed3(var sType, var lType) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Service",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$sType" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Service",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Letter",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$sType" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$lType" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Letter",style: FottorL)
               ),
-            )
-          ],
-        )
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$lType" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -578,42 +581,45 @@ class _TransactionPage extends State<TransactionPage>{
     );
   }
   buildExpanded3(var invoice, var agentFNM, var agentLNM,var paymenton, var cancelon,var cancelStatus,var action, var status,var id) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        showFottorData('Invoice Number', '$invoice'),
-        showFottorData('Agent Name', '$agentFNM $agentLNM'),
-        showFottorData('Payment On', '$paymenton'),
-        showFottorData('Cancel On', '$cancelon'),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            action == '1' ? Padding(
-              padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
-              child: Container(
-                  padding: EdgeInsets.fromLTRB(8, 3, 8, 3),
-                  color: Colors.red.withOpacity(0.5),
-                  child: Text("cancel",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.white),)),
-            ) : action == '2' ? InkWell(
-              onTap: (){
-                openActionButton(id);
-              },
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
-                child: Container(
-                    padding: PaddingField,
-                    child: Icon(Icons.menu_open_sharp,color: PrimaryColorOne,size: 15)
-                ),
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          showFottorData('Invoice Number', '$invoice'),
+          showFottorData('Agent Name', '$agentFNM $agentLNM'),
+          showFottorData('Payment On', '$paymenton'),
+          showFottorData('Cancel On', '$cancelon'),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.5,
+                  child: Text("Action",style: FottorL)
               ),
-            ) : Container(),
-          ],
-        ),
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              action == '1' ? Padding(
+                padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
+                child: Container(
+                    padding: EdgeInsets.fromLTRB(8, 3, 8, 3),
+                    color: Colors.red.withOpacity(0.5),
+                    child: Text("cancel",style: TextStyle(fontFamily: Constants.OPEN_SANS,color: Colors.white),)),
+              ) : action == '2' ? InkWell(
+                onTap: (){
+                  openActionButton(id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
+                  child: Container(
+                      padding: PaddingField,
+                      child: Icon(Icons.menu_open_sharp,color: PrimaryColorOne,size: 15)
+                  ),
+                ),
+              ) : Container(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -642,48 +648,43 @@ class _TransactionPage extends State<TransactionPage>{
         builder: (BuildContext context) {
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
-            content: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  CircleAvatar(
-                    maxRadius: 40.0,
-                    backgroundColor: Colors.white,
-                    child: Image.asset("assets/image/icon.png",width: 50,),
+            backgroundColor: Colors.white,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                CircleAvatar(
+                  maxRadius: 40.0,
+                  backgroundColor: Colors.white,
+                  child: Image.asset("assets/image/icon.png",width: 50,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("VISABOARD", style: TextStyle(fontFamily: Constants.OPEN_SANS,fontWeight: FontWeight.bold,fontSize: 18),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    "Are you sure you want to cancel order? Agent will get refund into their system wallet.",
+                    style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 12),
+                    textAlign: TextAlign.center,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("VISABOARD", style: TextStyle(fontFamily: Constants.OPEN_SANS,fontWeight: FontWeight.bold,fontSize: 18),),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Text(
-                      "Are you sure you want to cancel order? Agent will get refund into their system wallet.",
-                      style: TextStyle(fontFamily: Constants.OPEN_SANS,fontSize: 12),
-                      textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    TextButton(
+                      child: Text("Cancel",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 2),),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      TextButton(
-                        child: Text("Cancel",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 2),),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      TextButton(
-                        child: Text("Ok",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 2),),
-                        onPressed: (){
-                          cancelTransactionRecord(id);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    TextButton(
+                      child: Text("Ok",style: TextStyle(fontFamily: Constants.OPEN_SANS,letterSpacing: 2),),
+                      onPressed: (){
+                        cancelTransactionRecord(id);
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           );
         }

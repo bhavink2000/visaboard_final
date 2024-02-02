@@ -191,44 +191,47 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     );
   }
   buildCollapsed3(var email, var mobile) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Email",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$email" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Email",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 6,
-                child: Text("Mobile",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: InkWell(
-                onTap: ()=>launch("tel://$mobile"),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
                 child: Container(
                     padding: PaddingField,
-                    child: Text("$mobile" ?? "",style: FottorR)
+                    child: Text("$email" ?? "",style: FottorR)
                 ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 6,
+                  child: Text("Mobile",style: FottorL)
               ),
-            )
-          ],
-        )
-      ],
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: InkWell(
+                  onTap: ()=>launch("tel://$mobile"),
+                  child: Container(
+                      padding: PaddingField,
+                      child: Text("$mobile" ?? "",style: FottorR)
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 

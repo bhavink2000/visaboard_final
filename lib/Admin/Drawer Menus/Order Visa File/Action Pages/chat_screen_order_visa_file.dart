@@ -155,8 +155,11 @@ class _ChatScreenOrderVisaFile extends State<ChatScreenOrderVisaFile> {
                             itemCount: value.oVFChatData.data!.chatData!.userInboxes!.length,
                             itemBuilder: (context, index){
                               var chatData = value.oVFChatData.data!.chatData!.userInboxes;
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              return Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,width: 1)
+                                ),
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                                 child: Column(
                                   children: [
                                     Row(
@@ -472,6 +475,7 @@ class _ChatScreenOrderVisaFile extends State<ChatScreenOrderVisaFile> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
+            backgroundColor: Colors.white,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState){
                 return Column(

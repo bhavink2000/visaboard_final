@@ -1,14 +1,12 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
-
-
 class ApiConstants {
+  //static String WebUrl = 'https://visaboard.in/vbx';        // Live Web
 
-  //static String WebUrl = 'https://visaboard.in/vbx';
-  //static String URL = "https://demo.visaboard.in/api/vbx/";
-  static String URL = "https://visaboard.in/api/vbx/";
+  //static String URL = "https://demo.visaboard.in/api/vbx/";   // Demo
+  static String URL = "https://visaboard.in/api/vbx/"; // Live
 
-  static String   Login = "${URL}login";
+  static String Login = "${URL}login";
   static String ForgotPassword = "${URL}post-forgot-password";
   static String ChangePassword = "${URL}post-change-password";
 
@@ -21,7 +19,8 @@ class ApiConstants {
 
   static String getAgentList = "${URL}get-agents-list";
   static String getAgentLogHistory = "${URL}get-agent-logs-history";
-  static String getAgentWalletTransaction = "${URL}get-agent-wallet-transaction";
+  static String getAgentWalletTransaction =
+      "${URL}get-agent-wallet-transaction";
   static String getAgentUpdate = "${URL}post-update-agent";
   static String getAgentNewCreate = "${URL}post-agent";
 
@@ -88,19 +87,19 @@ class ApiConstants {
   static String getOrderVisaFileList = "${URL}user/sop/list";
   static String getOVFEdit = "${URL}user/edit";
   static String getOVFUpdate = "${URL}user/update";
-  static String getOVFChanges  = "${URL}user/sop/status/change";
+  static String getOVFChanges = "${URL}user/sop/status/change";
   static String getUploadDocs = "${URL}user/upload-document";
   static String getAddSubDomain = "https://demo.visaboard.in/api/vbx/user/";
-  static String getOVFChat  = "${URL}user/sop/";
-  static String getOVFChatDelete  = "${URL}user/sop/";
+  static String getOVFChat = "${URL}user/sop/";
+  static String getOVFChatDelete = "${URL}user/sop/";
   static String getChatDocsDownload = "${URL}user/download-inbox-document/";
   //static String getUploadDocsDownload = "https://demo.visaboard.in/api/vbx/user/download-document";
-  static String getUploadDocsDownload = "https://visaboard.in/api/vbx/user/download-document";
+  static String getUploadDocsDownload =
+      "https://visaboard.in/api/vbx/user/download-document";
 
   static String getServiceRequestedAdd = "${URL}/user/apply-sop";
   static String getServiceRequested = "${URL}user/";
 }
-
 
 /*
 Live

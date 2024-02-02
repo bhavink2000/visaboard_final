@@ -83,7 +83,7 @@ class _ProfilePage extends State<ProfilePage>{
                                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
                                     content: Container(
                                       decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        //color: Colors.white,
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       child: Column(

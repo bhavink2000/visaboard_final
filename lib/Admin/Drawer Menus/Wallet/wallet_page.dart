@@ -366,6 +366,7 @@ class _WalletPageD extends State<WalletPageD>{
   buildExpanded3(var c_am, var d_am, var c_date, var d_date) {
     return Container(
       padding: ContinerPaddingInside,
+      color: Colors.white,
       //decoration: SubContainerDecoration,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -448,6 +449,7 @@ class _WalletPageD extends State<WalletPageD>{
           return AlertDialog(
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
+            backgroundColor: Colors.white,
             content: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

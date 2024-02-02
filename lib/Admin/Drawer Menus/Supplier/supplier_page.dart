@@ -304,6 +304,7 @@ class _SupplierPage extends State<SupplierPage>{
   }
   buildCollapsed3(var agencyNM, var mobile,var agencyEId,var id,var uNm, var uEmail, var aNM,var cNm,var cNo,var country) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -456,117 +457,120 @@ class _SupplierPage extends State<SupplierPage>{
     );
   }
   buildExpanded3(var subAdminFNM, var subAdminLNM, var country, var agencyEmail, var createOn, var id,var uNm, var uEmail, var aNM,var cNm,var cNo) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Sub Admin Name",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Container(
                   padding: PaddingField,
-                  child: Text("$subAdminFNM $subAdminLNM" ?? "",style: FottorR)
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Sub Admin Name",style: FottorL)
               ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Country",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$country" ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Agency Email ID",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text(agencyEmail == null ? "" : "$agencyEmail"?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Created On",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Expanded(
-              child: Container(
-                  padding: PaddingField,
-                  child: Text("$createOn" ?? "",style: FottorR)
-              ),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-                padding: PaddingField,
-                width: MediaQuery.of(context).size.width / 3.1,
-                child: Text("Action",style: FottorL)
-            ),
-            const Text(":",style: TextStyle(color: Colors.black)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SupplierCreateEdit(
-                          type: 'Edit',
-                          countryId: country,
-                          uniNM: uNm == null ? '' : '$uNm',
-                          unEm: uEmail == null ? '' : '$uEmail',
-                          agencynm: aNM == null ? '' : '$aNM',
-                          agencyemail: agencyEmail == null ? '' : '$agencyEmail',
-                          contactp: cNm == null ? '' : '$cNm',
-                          contactno: cNo == null ? '' : '$cNo',
-                        id: id,
-                      )));
-                    },
-                    child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
-                  ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$subAdminFNM $subAdminLNM" ?? "",style: FottorR)
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: InkWell(
-                    onTap: (){
-                      deleteSupplier(id);
-                    },
-                    child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Country",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$country" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Agency Email ID",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text(agencyEmail == null ? "" : "$agencyEmail"?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Created On",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Expanded(
+                child: Container(
+                    padding: PaddingField,
+                    child: Text("$createOn" ?? "",style: FottorR)
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: PaddingField,
+                  width: MediaQuery.of(context).size.width / 3.1,
+                  child: Text("Action",style: FottorL)
+              ),
+              const Text(":",style: TextStyle(color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SupplierCreateEdit(
+                            type: 'Edit',
+                            countryId: country,
+                            uniNM: uNm == null ? '' : '$uNm',
+                            unEm: uEmail == null ? '' : '$uEmail',
+                            agencynm: aNM == null ? '' : '$aNM',
+                            agencyemail: agencyEmail == null ? '' : '$agencyEmail',
+                            contactp: cNm == null ? '' : '$cNm',
+                            contactno: cNo == null ? '' : '$cNo',
+                          id: id,
+                        )));
+                      },
+                      child: Icon(Icons.edit,color: PrimaryColorOne,size: 20,),
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
-        ),
-      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: InkWell(
+                      onTap: (){
+                        deleteSupplier(id);
+                      },
+                      child: Icon(Icons.delete,color: PrimaryColorOne,size: 20,),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
